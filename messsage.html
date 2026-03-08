@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lời Chúc</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>8/3 Vui Vẻ 🌸</h1>
+    <div id="passwordContainer">
+        <input type="password" id="passwordInput" placeholder="Nhập mật khẩu">
+        <button onclick="checkPassword()">Xem lời chúc</button>
+    </div>
+    <div id="messageContainer" style="display:none;">
+        <div id="message"></div>
+        <p id="additional"></p>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        const nameMessages = {
+            "Quyên Chu": "abcss",
+            "Minh Ánh": "mm",
+            "Bảo Châu": "mm",
+            "Bảo Chi": "mm",
+            "Diệu Hằng": "mm",
+            "Hoàng Anh": "mm",
+            "Hà Anh": "mm",
+            "Hạnh Nhi": "nhân ngày 8-3 tyce chúc yo sẽ lun lun xinh đẹp,vui vẻ,hạnh phúc 🙄 sau này sẽ đạt được những mục tiêu mà mình mong mún,chúc yo có tất cả trừ mọi vất vả,gì cũng mới trừ ty 😒😠 ",
+            "Lan Anh": "mm",
+            "Ngọc Anh": "Nhân ngày 8-3 chúc bạn có một ngày thật nhiều ý nghĩa và niềm vui. Chúc bạn ăn mau chóng ăn, thật nhiều sức khoẻ. Sắp tới, kì thi đại học rất quan trọng, cố gắng học tập để đỗ được nguyện vọng của mình và quyết tâm trên con đường mà bạn lựa chọn nhé. Cảm ơn Ngọc Anh đã là 1 thành viên của A8",
+            "Ngọc Linh": "mm",
+            "Mai Hương": "mm",
+            "Quỳnh Anh": "mm",
+            "Quỳnh Hương": "mm",
+            "Thục Anh": "Chúc ebe có một ngày 8/3 zui zẻ,hạnh phúc,ngày càng xinh đẹp cute,học hành chăm chỉ đỗ nguyện vọng 1 và điều quan trọng là thực hiện được ước mơ làm đầu bếp của mình.Chúc ebe một ngày 8/3 thật nhiều niềm vui.🦔❤️",
+            "Bảo Thy": "mm",
+            "Hà Linh": "Dear Hà Linh. Chúc mồm thối ngày 8/3 có nhiều niềm vui, hạnh phúc. Ae A8 mong bạn luôn xinh gái, mạnh khoẻ, vui vẻ. Còn 3 tháng nữa thi đại học rồi, cố gắng học tập để đạt kết quả tốt trong kì thi quan trọng này nhé. Cảm ơn bạn đã là thành viên của lớp chúng ta. Bạn đánh răng nhiều vào nhé để mồm đỡ thối!!",
+            "Khánh Linh": "mm",
+            "Yến Vy": "Gửi Yến Vy, chúc Bắp ngày 8/3 thật nhiều niềm vui và hạnh phúc. Mong bạn luôn xinh gái, khoẻ khoắn và tươi tắn vui vẻ bên bạn bè. Còn vài tháng là thi đại học rồi, tớ mong cậu sẽ đạt được điểm số như mong ước. Chúc cậu sẽ luôn giữ được nụ cười và thực hiện được ước mơ đi quanh thế giới. Cảm ơn vì đã là 1 phần của A8.",
+            "Tường Vi": "Chúc bạn Vi 12a8 ngày 8/3 nhận được thật nhiều hoa, nhiều quà và đặc biệt là thật nhiều yêu thương.",
+            "Yến Ngọc": "dmm"
+        };
+        const additionalTexts = {
+            "Quyên Chu": "Gửi từ: Hội Chị Em 12A8",
+            "Minh Ánh": "Gửi từ: ",
+            "Bảo Châu": "Gửi từ: ",
+            "Bảo Chi": "Gửi từ: ",
+            "Diệu Hằng": "Gửi từ: ",
+            "Hoàng Anh": "Gửi từ: ",
+            "Hà Anh": "Gửi từ: ",
+            "Hạnh Nhi": "Gửi từ: Hồng Phước",
+            "Lan Anh": "Gửi từ: ",
+            "Ngọc Anh": "Gửi từ: ",
+            "Ngọc Linh": "Gửi từ: ",
+            "Mai Hương": "Gửi từ: ",
+            "Quỳnh Anh": "Gửi từ: ",
+            "Quỳnh Hương": "Gửi từ: ",
+            "Thục Anh": "Gửi từ: Long",
+            "Bảo Thy": "Gửi từ: ",
+            "Hà Linh": "Gửi từ: Đoàn Hiếu",
+            "Khánh Linh": "Gửi từ: ",
+            "Yến Vy": "Gửi từ: th",
+            "Tường Vi": "Gửi từ: Đình Phong",
+            "Yến Ngọc": "Gửi từ: "
+        };
+        const passwords = {
+            "Quyên Chu": "1234",
+            "Minh Ánh": "1234",
+            "Bảo Châu": "1234",
+            "Bảo Chi": "1234",
+            "Diệu Hằng": "1234",
+            "Hoàng Anh": "1234",
+            "Hà Anh": "1234",
+            "Hạnh Nhi": "13472008",
+            "Lan Anh": "1234",
+            "Ngọc Anh": "1234",
+            "Ngọc Linh": "1234",
+            "Mai Hương": "1234",
+            "Quỳnh Anh": "1234",
+            "Quỳnh Hương": "1234",
+            "Thục Anh": "090708",
+            "Bảo Thy": "1234",
+            "Hà Linh": "1234",
+            "Khánh Linh": "1234",
+            "Yến Vy": "02112008",
+            "Tường Vi": "1234",
+            "Yến Ngọc": "1234"
+        };
+
+        function checkPassword() {
+            const inputPassword = document.getElementById('passwordInput').value;
+            const correctPassword = passwords[name];
+
+            if (inputPassword === correctPassword) {
+                document.getElementById('passwordContainer').style.display = 'none';
+                document.getElementById('messageContainer').style.display = 'block';
+                const message = nameMessages[name] || "Message not found.";
+                const additional = additionalTexts[name] || "";
+                document.getElementById('message').innerHTML = `<p>${message}</p>`;
+                document.getElementById('additional').innerHTML = additional;
+            } else {
+                alert('Soi trộm?');
+            }
+        }
+    </script>
+</body>
+</html>
