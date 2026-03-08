@@ -32,11 +32,10 @@ card.className = "card";
 card.innerHTML = `
 <h3>${name}</h3>
 <a href="messsage.html?name=${encodeURIComponent(name)}">
-<img src="./img/${name}.png" alt="QR for ${name}">
+<img src="img/${name}.png" alt="QR for ${name}">
 </a>
 `;
 
 container.appendChild(card);
-
 
 });
